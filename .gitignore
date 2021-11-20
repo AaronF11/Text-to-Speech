@@ -3,3 +3,6 @@
 
 #executable files
 *.exe
+
+#audio
+*.mp3
