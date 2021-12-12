@@ -6,3 +6,6 @@
 
 #audio
 *.mp3
+
+# ignore vs code config
+.vscode
