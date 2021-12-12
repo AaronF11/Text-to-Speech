@@ -9,3 +9,6 @@
 
 # ignore vs code config
 .vscode
+
+# ignore __pycache__
+__pycache__
