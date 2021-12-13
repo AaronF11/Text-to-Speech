@@ -2,6 +2,10 @@ from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
 
+from txtspc import writeAndReadSpeakableFile
+
+import threading
+
 
 def initEnglishTab(tab):
     textArea = Text(tab, width=80, height=20, font=("Arial", 14, "normal"))
@@ -21,7 +25,10 @@ def initEnglishTab(tab):
                         activeforeground="#FFFFFF",
                         cursor="hand2",
                         font=("Arial", 16, "bold"),
-                        borderwidth=0)
+                        borderwidth=0,
+                        command=lambda: threading.Thread(
+                            target=writeAndReadSpeakableFile,
+                            args=(str(textArea.get("1.0", "end")), 1)).start())
 
     playButton.pack(fill="both", padx=10, pady=10)
 
@@ -44,7 +51,10 @@ def initSpanishTab(tab):
                         activeforeground="#FFFFFF",
                         cursor="hand2",
                         font=("Arial", 16, "bold"),
-                        borderwidth=0)
+                        borderwidth=0,
+                        command=lambda: threading.Thread(
+                            target=writeAndReadSpeakableFile,
+                            args=(str(textArea.get("1.0", "end")), 0)).start(),)
 
     playButton.pack(fill="both", padx=10, pady=10)
 
