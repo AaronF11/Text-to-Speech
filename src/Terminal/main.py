@@ -1,5 +1,3 @@
-import os
-import sys
 from os import system, remove
 from gtts import gTTS #pip install gTTS
 from playsound import playsound #pip install playsound==1.2.2
