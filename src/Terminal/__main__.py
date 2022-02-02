@@ -27,57 +27,38 @@ def title(): #Función de titulo | Title function
     print("║  ╠══╦══╦══╦══╦══╦══╬══╦══╦══╦══╦══╦══╬══╦══╦══╦══╦══╦══╬══╦══╦══╦══╦══╦══╣  ║".center(127," "))
     print("║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║  ║".center(127," "))
     print("╚══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╩══╝".center(127," "))
-
-def writeEnglish(): #Función para crear y sobrescribir txt en inglés | Function to create and overwrite txt in English
-    file = open("EnglishFile.txt", "w")
+    
+def writeSpeakableFile():
     print(" WRITE TEXT ".center(120, "║"))
-    record = str(input(""))
-    file.write(record)
-    file.close()
-    system("cls")
+    text = str(input())
+    with open('output.txt', 'w+') as file:
+        file.write(text)
 
-def voiceEnglish(): #Función para crear archivo de voz en inglés | Function to create voice file in Spanish
-    with open("EnglishFile.txt", "r") as file:
+def readSpeakableFile(language):
+    with open('output.txt', 'r') as file:
         text = file.read()
-    file = gTTS(text, lang = "en")
-    filename = "English.mp3"
-    file.save(filename)
+        if language == 0:
+            file = gTTS(text=text, lang='en')
+        elif language == 1:
+            file = gTTS(text=text, lang='es')
+        file.save('output.mp3')
+        playsound('output.mp3')
+        remove('output.mp3')
 
-def writeSpanish(): #Función para crear y sobrescribir txt en español | Function to create and overwrite txt in Spanish
-    file = open("SpanishFile.txt", "w")
-    print(" WRITE TEXT ".center(120, "║"))
-    record = str(input(""))
-    file.write(record)
-    file.close()
-    system("cls")
-
-def voiceSpanish(): #Función para crear archivo de voz en español | Function to create voice file in Spanish
-    with open("SpanishFile.txt", "r") as file:
-        text = file.read()
-    file = gTTS(text, lang = "es")
-    filename = "Spanish.mp3"
-    file.save(filename)
 
 def option(): #Menu de opciones | Menu options
     print(" OPTION ".center(120, "║"))
     op = int(input(" -- > "))
-    
-    #Versión Inglés | English version
+
     if op == 1:
-        writeEnglish()
+        writeSpeakableFile()
     elif op == 2:
-        voiceEnglish()
-        audio = "English.mp3"
-        playsound(audio)
-        remove("English.mp3")
-    #Versión Español | Spanish version
+        readSpeakableFile(0)
     elif op == 3:
-        writeSpanish()
+        writeSpeakableFile()
     elif op == 4:
-        voiceSpanish()
-        audio = "Spanish.mp3"
-        playsound(audio)
-        remove("Spanish.mp3")
+        readSpeakableFile(1)
+
 
 
 def main(): #Función main para mandar a llamar las demas funciones | Main function to call the other functions
