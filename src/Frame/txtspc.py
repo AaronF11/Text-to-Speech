@@ -9,12 +9,12 @@ def writeSpeakableFile(text):
         file.write(text)
 
 
-def readSpeakableFile(lenguage):
+def readSpeakableFile(language):
     with open("output.txt", "r") as file:
         text = file.read()
-        if lenguage == 0:
+        if language == 0:
             file = gTTS(text=text, lang="es")
-        if lenguage == 1:
+        if language == 1:
             file = gTTS(text=text, lang="en")
         fileName = "tts.mp3"
         file.save(fileName)
@@ -22,6 +22,6 @@ def readSpeakableFile(lenguage):
         remove(fileName)
 
 
-def writeAndReadSpeakableFile(text, lenguage):
+def writeAndReadSpeakableFile(text, language):
     writeSpeakableFile(text)
-    readSpeakableFile(lenguage)
+    readSpeakableFile(language)
